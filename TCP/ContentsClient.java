@@ -1,4 +1,3 @@
-package TCP;
 import java.io.*;
 import java.net.*;
 public class ContentsClient
@@ -9,11 +8,11 @@ public class ContentsClient
         System.out.println("Enter the file name");
         BufferedReader keyReader = new BufferedReader(new InputStreamReader(System.in));
         String fName = keyReader.readLine();
-        OutputStream oStream = socket.getOutputStream();
-        PrintWriter pWriter = new PrintWriter(oStream,true);
+        
+        PrintWriter pWriter = new PrintWriter(socket.getOutputStream(),true);
         pWriter.println(fName);
-        InputStream iStream = socket.getInputStream();
-        BufferedReader sockeReader = new BufferedReader(new InputStreamReader(iStream));
+
+        BufferedReader sockeReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         String str;
         while((str = sockeReader.readLine())!=null){

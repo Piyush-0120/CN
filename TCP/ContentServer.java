@@ -1,4 +1,3 @@
-package TCP;
 import java.io.*;
 import java.net.*;
 
@@ -8,15 +7,12 @@ public class ContentServer {
         System.out.println("Server ready for connection");
         Socket socket = serverSocket.accept();
         System.out.println("Connection is successfull and waiting for chatting");
-        InputStream iStream = socket.getInputStream();
 
-        BufferedReader filReader = new BufferedReader(new InputStreamReader(iStream));
+        BufferedReader filReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String fname = filReader.readLine();
         BufferedReader contentReader = new BufferedReader(new FileReader(fname));
 
-        OutputStream oStream = socket.getOutputStream();
-        PrintWriter pWriter = new PrintWriter(oStream,true);
-
+        PrintWriter pWriter = new PrintWriter(socket.getOutputStream(),true);
         String str;
         while((str = contentReader.readLine())!=null){
             pWriter.println(str);
